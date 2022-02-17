@@ -25,6 +25,7 @@ namespace BookStore_WebAPI.Controllers
                 Order NewOrder = new Order();
                 NewOrder.CustomerId = CustomerID;
                 NewOrder.DateOfOrder = DateTime.Now;
+                database.Orders.Add(NewOrder);
                 // make new order
             }
             OrderDetails NewOrderDetail = new OrderDetails();
