@@ -92,4 +92,3 @@ C:\Users\ahmed.abdullah\source\repos\BookStore_WebAPI\BookStore_WebAPI\obj\Debug
 C:\Users\ahmed.abdullah\source\repos\BookStore_WebAPI\BookStore_WebAPI\obj\Debug\BookStore_WebAPI.csproj.CopyComplete
 C:\Users\ahmed.abdullah\source\repos\BookStore_WebAPI\BookStore_WebAPI\obj\Debug\BookStore_WebAPI.dll
 C:\Users\ahmed.abdullah\source\repos\BookStore_WebAPI\BookStore_WebAPI\obj\Debug\BookStore_WebAPI.pdb
-C:\Users\ahmed.abdullah\source\repos\BookStore_WebAPI\BookStore_WebAPI\obj\Debug\BookStore_WebAPI.csproj.AssemblyReference.cache
