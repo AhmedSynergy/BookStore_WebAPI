@@ -175,22 +175,21 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\IEnumerable.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Dtos\BookIDandQuantity.cs" />
-    <Compile Include="Dtos\BooksAndOrderQuantityDTO.cs" />
+    <Compile Include="BusinessLayerFolder\Controllers\BookController.cs" />
+    <Compile Include="BusinessLayerFolder\Controllers\CustomerController.cs" />
+    <Compile Include="BusinessLayerFolder\Controllers\OrderController.cs" />
+    <Compile Include="CoreFolder\Dtos\BooksAndOrderQuantityDTO.cs" />
+    <Compile Include="CoreFolder\Models\Book.cs" />
+    <Compile Include="CoreFolder\Models\Customer.cs" />
+    <Compile Include="CoreFolder\Models\Order.cs" />
+    <Compile Include="CoreFolder\Models\OrderDetails.cs" />
+    <Compile Include="CoreFolder\Models\PagingParameterModel.cs" />
+    <Compile Include="InfrastructureFolder\DataLayer\BookIDandQuantity.cs" />
+    <Compile Include="InfrastructureFolder\DataLayer\DBOperations.cs" />
+    <Compile Include="InfrastructureFolder\DataLayer\ShopDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderDetails.cs" />
-    <Compile Include="Models\PagingParameterModel.cs" />
-    <Compile Include="Models\ShopContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
