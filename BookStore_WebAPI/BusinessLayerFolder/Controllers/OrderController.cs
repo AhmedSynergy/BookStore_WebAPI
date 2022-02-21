@@ -53,5 +53,11 @@ namespace BookStore_WebAPI.BusinessLayerFolder.Controllers
             return DBAccess.GetOrderDetails(OrderId);
         }
 
+
+        public IEnumerable<OrderDTO> OrdersByCustomer(int ID)
+        {
+            return DBAccess.OrdersOfCustomer(ID);
+        }
+
     }
 }

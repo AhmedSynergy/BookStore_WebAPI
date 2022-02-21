@@ -220,7 +220,6 @@ namespace BookStore_WebAPI.InfrastructureFolder.DataLayer
                     orderDetail => orderDetail.BookId,
                     (book, orderDetail) => new BooksAndOrderQuantityDTO
                     {
-                        Book = book.Book,
                         Quantity = orderDetail.Quantity
                     }
                     )
@@ -238,6 +237,22 @@ namespace BookStore_WebAPI.InfrastructureFolder.DataLayer
             }
 
 
+        }
+
+
+        public IEnumerable<OrderDTO> OrdersOfCustomer(int ID)
+        {
+            var data = Database.Orders.Where(order => order.CustomerId == ID).ToList();
+            List<OrderDTO> ordersByCustomer = new List<OrderDTO>();
+            foreach (Order order in data)
+            {
+                ordersByCustomer.Add(new OrderDTO
+                {
+                    Order = order
+                });
+            };
+
+            return ordersByCustomer;
         }
 
 
