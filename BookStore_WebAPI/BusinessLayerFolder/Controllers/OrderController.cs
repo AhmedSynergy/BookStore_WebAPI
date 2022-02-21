@@ -9,7 +9,7 @@ using BookStore_WebAPI.InfrastructureFolder.Dtos;
 
 namespace BookStore_WebAPI.BusinessLayerFolder.Controllers
 {
-    public class OrderController : ApiController
+    public class OrderController : ApiController,IOrderController
     {
         readonly DBOperations DBAccess = new DBOperations();
         // GET: Order
