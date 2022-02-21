@@ -4,21 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using BookStore_WebAPI.CoreFolder.Models;
-using BookStore_WebAPI.CoreFolder.Dtos;
+using BookStore_WebAPI.InfrastructureFolder.Dtos;
 using PagedList;
 using System.Data.Entity;
 using BookStore_WebAPI.InfrastructureFolder.DataLayer;
+using BookStore_WebAPI.BusinessLayerFolder.Controllers;
 
 namespace BookStore.Controllers
 {
-    public class BookController : ApiController
+    public class BookController : ApiController,IBookController
     {
         readonly DBOperations DBAccess = new DBOperations();
 
 
         // GET: list of books
-        public IEnumerable<Book> GetAllBooks(int page, int ItemsPerPage)
+        public IEnumerable<BookDTO> GetAllBooks(int page, int ItemsPerPage)
         {
             PagingParameterModel PageNumber = new PagingParameterModel
             {
@@ -27,7 +27,7 @@ namespace BookStore.Controllers
             };
 
             var books = DBAccess.GetAllBooks();
-            books = books.OrderBy(book => book.Id)
+            books = books.OrderBy(book => book.Book.Id)
                 .Skip((PageNumber.Page - 1) * PageNumber.ItemsPerPage)
                 .Take(PageNumber.ItemsPerPage);
 
@@ -44,18 +44,18 @@ namespace BookStore.Controllers
 
         // GET: most expensive  book
 
-        public Book GetMostExpensiveBook()
+        public BookDTO GetMostExpensiveBook()
         {
             return DBAccess.GetMostExpensiveBook();
         }
 
 
-        public IEnumerable<Book> GetBooksByAuthor(string authorName)
+        public IEnumerable<BookDTO> GetBooksByAuthor(string authorName)
         {
             return DBAccess.GetBooksByAuthor(authorName);
         }
 
-        public IEnumerable<Book> GetBooksByAuthorByMostExpensiveToLeast(string authorName)
+        public IEnumerable<BookDTO> GetBooksByAuthorByMostExpensiveToLeast(string authorName)
         {
             return DBAccess.GetBooksByAuthorByMostExpensiveToLeast(authorName);
             
@@ -68,7 +68,7 @@ namespace BookStore.Controllers
 
         }
 
-        public string Create(Book book)
+        public string Create(BookDTO book)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace BookStore.Controllers
 
 
         // EDIT
-        public IHttpActionResult EditBook(Book book)
+        public IHttpActionResult EditBook(BookDTO book)
         {
             if (ModelState.IsValid == true)
             {

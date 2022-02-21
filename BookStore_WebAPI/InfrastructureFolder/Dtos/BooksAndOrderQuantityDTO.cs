@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using BookStore_WebAPI.CoreFolder.Models;
 
-namespace BookStore_WebAPI.CoreFolder.Dtos
+namespace BookStore_WebAPI.InfrastructureFolder.Dtos
 {
     public class BooksAndOrderQuantityDTO
     {

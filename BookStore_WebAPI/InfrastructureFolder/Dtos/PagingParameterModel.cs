@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BookStore_WebAPI.CoreFolder.Models
+namespace BookStore_WebAPI.InfrastructureFolder.Dtos
 {
     public class PagingParameterModel
     {

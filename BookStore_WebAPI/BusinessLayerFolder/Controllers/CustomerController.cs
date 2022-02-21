@@ -2,36 +2,55 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using BookStore_WebAPI.CoreFolder.Models;
+using BookStore_WebAPI.BusinessLayerFolder.Controllers;
+
 using BookStore_WebAPI.InfrastructureFolder.DataLayer;
+using BookStore_WebAPI.InfrastructureFolder.Dtos;
 
 namespace BookStore.Controllers
 {
-    public class CustomerController : ApiController
+    public class CustomerController : ApiController,ICustomerController
     {
         readonly DBOperations DBAccess = new DBOperations();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
         // GET: Customer
-        public IEnumerable<Customer> GetAllCustomers()
+        public IEnumerable<CustomerDTO> GetAllCustomers()
         {
             return DBAccess.GetAllCustomers();
         }
 
 
-        public IHttpActionResult CustomerRegistration(Customer customer)
+        public IHttpActionResult CustomerRegistration(CustomerDTO customer)
         {
             if (ModelState.IsValid)
             {
                 var customers = DBAccess.GetAllCustomers();
-                foreach ( Customer cust in customers)
+                foreach ( CustomerDTO cust in customers)
                 {
-                    if (cust.Email == customer.Email)
+                    if (cust.Customer.Email == customer.Customer.Email)
                         return Ok("Email already in use");
                 }
 
 
 
 
-                if (customer.Password.Length < 6) // length > = 6
+                if (customer.Customer.Password.Length < 6) // length > = 6
                     return Ok("Length of password should be atleast 6.");
 
                 int check = DBAccess.AddCustomer(customer);
@@ -57,11 +76,11 @@ namespace BookStore.Controllers
             if (ModelState.IsValid)
             {
                 var customers = DBAccess.GetAllCustomers();
-                foreach ( Customer cust in customers)
+                foreach ( CustomerDTO cust in customers)
                 {
-                    if (cust.Email == email && cust.Password == password)
+                    if (cust.Customer.Email == email && cust.Customer.Password == password)
                         return Ok("Login Successful.");
-                    else if (cust.Email == email)
+                    else if (cust.Customer.Email == email)
                         return BadRequest("Invalid password");
                 }
             }
@@ -69,5 +88,8 @@ namespace BookStore.Controllers
              return BadRequest("Invalid input");
 
         }
+      
+
+        
     }
 }

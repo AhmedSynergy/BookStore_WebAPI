@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using BookStore_WebAPI.CoreFolder.Models;
 using System.Web.Http;
 using System.Data.Entity;
 using BookStore_WebAPI.InfrastructureFolder.DataLayer;
+using BookStore_WebAPI.InfrastructureFolder.Dtos;
 
 namespace BookStore_WebAPI.BusinessLayerFolder.Controllers
 {
@@ -13,7 +13,7 @@ namespace BookStore_WebAPI.BusinessLayerFolder.Controllers
     {
         readonly DBOperations DBAccess = new DBOperations();
         // GET: Order
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<OrderDTO> GetAllOrders()
         {
            
             return DBAccess.GetAllOrders();
@@ -24,20 +24,20 @@ namespace BookStore_WebAPI.BusinessLayerFolder.Controllers
             var Order = DBAccess.GetOrder(OrderId);
             if(Order == null)
             {
-                Order NewOrder = new Order();
-                NewOrder.CustomerId = CustomerID;
-                NewOrder.DateOfOrder = DateTime.Now;
+                OrderDTO NewOrder = new OrderDTO();
+                NewOrder.Order.CustomerId = CustomerID;
+                NewOrder.Order.DateOfOrder = DateTime.Now;
                 DBAccess.AddOrder(NewOrder);
                 // make new order
             }
-            OrderDetails NewOrderDetail = new OrderDetails();
-            NewOrderDetail.OrderId = OrderId;
-            NewOrderDetail.BookId = BookId;
-            NewOrderDetail.Quantity = Quantity;
+            OrderDetailsDTO NewOrderDetail = new OrderDetailsDTO();
+            NewOrderDetail.OrderDetails.OrderId = OrderId;
+            NewOrderDetail.OrderDetails.BookId = BookId;
+            NewOrderDetail.OrderDetails.Quantity = Quantity;
             int check = DBAccess.AddOrderDetails(NewOrderDetail);
             if (check == 1)
             {
-                return Ok("Customer successfully added");
+                return Ok("Added to cart successfully");
 
             }
             else
@@ -48,7 +48,7 @@ namespace BookStore_WebAPI.BusinessLayerFolder.Controllers
 
         }
 
-        public IEnumerable<OrderDetails> GetOrderDetails(int OrderId)
+        public IEnumerable<OrderDetailsDTO> GetOrderDetails(int OrderId)
         {
             return DBAccess.GetOrderDetails(OrderId);
         }
